@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Machine Learning Projects</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f8f9fa;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+    
+    .container {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 20px;
+    }
+    
+    .tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-size: 16px;
+      font-weight: 600;
+      color: #7f8c8d;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .tab:hover {
+      color: #3498db;
+    }
+    
+    .tab.active {
+      color: #3498db;
+    }
+    
+    .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #3498db;
+    }
+    
+    .content {
+      display: none;
+    }
+    
+    .content.active {
+      display: block;
+    }
+    
+    .levels {
+      display: flex;
+      margin-bottom: 15px;
+    }
+    
+    .level {
+      padding: 8px 16px;
+      cursor: pointer;
+      border: 1px solid #ddd;
+      background-color: #f8f9fa;
+      margin-right: 10px;
+      border-radius: 4px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    
+    .level:hover {
+      background-color: #e9ecef;
+    }
+    
+    .level.active {
+      background-color: #3498db;
+      color: white;
+      border-color: #3498db;
+    }
+    
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    
+    .project-card {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 15px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    
+    .project-title {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+    
+    .project-description {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    
+    .skills {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .skill-tag {
+      display: inline-block;
+      background-color: #e0f7fa;
+      color: #0097a7;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      margin-right: 5px;
+      margin-bottom: 5px;
+    }
+    
+    .goal {
+      font-style: italic;
+      font-size: 13px;
+      color: #7f8c8d;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+    
+    .milestone {
+      border-left: 4px solid #e74c3c;
+      background-color: #fff9f9;
+    }
+    
+    .milestone .project-title {
+      color: #e74c3c;
+    }
+    
+    .milestone .skill-tag {
+      background-color: #fde9e8;
+      color: #c0392b;
+    }
+    
+    .search-container {
+      margin-bottom: 20px;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    
+    .new-tag {
+      background-color: #4CAF50;
+      color: white;
+      padding: 3px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: bold;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <h1>Machine Learning Projects</h1>
+  <div class="container">
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Search projects, skills, or keywords..." id="searchInput">
+    </div>
+    
+    <div class="tabs">
+      <button class="tab active" data-category="ml">Machine Learning</button>
+      <button class="tab" data-category="dl">Deep Learning</button>
+      <button class="tab" data-category="nlp">Natural Language Processing</button>
+      <button class="tab" data-category="llm">Large Language Models</button>
+    </div>
+    
+    <!-- Machine Learning Section -->
+    <div id="ml" class="content active">
+      <div class="levels">
+        <button class="level active" data-level="beginner">Beginner</button>
+        <button class="level" data-level="intermediate">Intermediate</button>
+        <button class="level" data-level="milestone">Milestone</button>
+      </div>
+      <div class="project-grid">
+        <!-- ML Beginner Projects -->
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">1. Exploratory Data Analysis and Visualization</div>
+          <div class="project-description">Analyze and visualize a dataset like Titanic or Iris</div>
+          <div class="skills">
+            <span class="skill-tag">pandas</span>
+            <span class="skill-tag">matplotlib</span>
+            <span class="skill-tag">seaborn</span>
+            <span class="skill-tag">data cleaning</span>
+          </div>
+          <div class="goal">Goal: Understand data structure, handle missing values, and create informative visualizations</div>
+        </div>
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">2. Linear Regression Home Price Predictor</div>
+          <div class="project-description">Predict housing prices using the Boston or California housing dataset</div>
+          <div class="skills">
+            <span class="skill-tag">scikit-learn</span>
+            <span class="skill-tag">feature selection</span>
+            <span class="skill-tag">evaluation metrics</span>
+          </div>
+          <div class="goal">Goal: Build your first predictive model and understand regression fundamentals</div>
+        </div>
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">3. Classification with Logistic Regression</div>
+          <div class="project-description">Credit card fraud detection</div>
+          <div class="skills">
+            <span class="skill-tag">class imbalance</span>
+            <span class="skill-tag">precision-recall</span>
+            <span class="skill-tag">ROC curves</span>
+          </div>
+          <div class="goal">Goal: Learn binary classification and evaluation metrics</div>
+        </div>
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">4. Decision Trees and Random Forests</div>
+          <div class="project-description">Customer churn prediction for a subscription service</div>
+          <div class="skills">
+            <span class="skill-tag">feature importance</span>
+            <span class="skill-tag">tree visualization</span>
+            <span class="skill-tag">ensemble methods</span>
+          </div>
+          <div class="goal">Goal: Understand tree-based algorithms and the benefits of ensembling</div>
+        </div>
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">5. Clustering for Customer Segmentation</div>
+          <div class="project-description">Group customers by purchasing behavior</div>
+          <div class="skills">
+            <span class="skill-tag">K-means</span>
+            <span class="skill-tag">hierarchical clustering</span>
+            <span class="skill-tag">silhouette scores</span>
+          </div>
+          <div class="goal">Goal: Learn unsupervised learning techniques for pattern discovery</div>
+        </div>
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">6. Reinforcement Learning for Gridworld Navigation <span class="new-tag">NEW</span></div>
+          <div class="project-description">Implement a tabular Q-learning agent in a simple gridworld environment</div>
+          <div class="skills">
+            <span class="skill-tag">Q-learning</span>
+            <span class="skill-tag">exploration vs. exploitation</span>
+            <span class="skill-tag">reward shaping</span>
+          </div>
+          <div class="goal">Goal: Grasp the basic principles of reinforcement learning without deep networks</div>
+        </div>
+        <!-- ML Intermediate Projects -->
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">7. Time Series Analysis and Forecasting</div>
+          <div class="project-description">Stock price prediction or retail sales forecasting</div>
+          <div class="skills">
+            <span class="skill-tag">ARIMA</span>
+            <span class="skill-tag">seasonal decomposition</span>
+            <span class="skill-tag">time-based features</span>
+          </div>
+          <div class="goal">Goal: Understand temporal data and forecasting methods</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">8. Recommendation System</div>
+          <div class="project-description">Movie recommender using the MovieLens dataset</div>
+          <div class="skills">
+            <span class="skill-tag">collaborative filtering</span>
+            <span class="skill-tag">content-based filtering</span>
+            <span class="skill-tag">evaluation metrics</span>
+          </div>
+          <div class="goal">Goal: Build personalized recommendation engines</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">9. Dimensionality Reduction and Visualization</div>
+          <div class="project-description">Visualize a high-dimensional dataset (e.g., MNIST) using PCA or t-SNE</div>
+          <div class="skills">
+            <span class="skill-tag">feature extraction</span>
+            <span class="skill-tag">manifold learning</span>
+            <span class="skill-tag">visualization techniques</span>
+          </div>
+          <div class="goal">Goal: Learn to handle and interpret high-dimensional data</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">10. Anomaly Detection System</div>
+          <div class="project-description">Network intrusion detection or manufacturing defect identification</div>
+          <div class="skills">
+            <span class="skill-tag">Isolation Forest</span>
+            <span class="skill-tag">One-Class SVM</span>
+            <span class="skill-tag">evaluation techniques</span>
+          </div>
+          <div class="goal">Goal: Identify rare events or outliers in datasets</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">11. Ensemble Learning Methods</div>
+          <div class="project-description">Multi-class classification for disease diagnosis</div>
+          <div class="skills">
+            <span class="skill-tag">bagging</span>
+            <span class="skill-tag">boosting</span>
+            <span class="skill-tag">stacking</span>
+          </div>
+          <div class="goal">Goal: Combine multiple models to boost performance</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">12. Bayesian Inference for Parameter Estimation <span class="new-tag">NEW</span></div>
+          <div class="project-description">Build a model (such as Bayesian linear regression) to estimate parameters using probabilistic methods</div>
+          <div class="skills">
+            <span class="skill-tag">probabilistic modeling</span>
+            <span class="skill-tag">MCMC</span>
+            <span class="skill-tag">posterior estimation</span>
+          </div>
+          <div class="goal">Goal: Understand uncertainty quantification and the power of Bayesian approaches</div>
+        </div>
+        <!-- ML Milestone Project -->
+        <div class="project-card milestone" data-level="milestone">
+          <div class="project-title">13. End-to-End ML Pipeline for Predictive Maintenance</div>
+          <div class="project-description">Predict equipment failures before they occur</div>
+          <div class="skills">
+            <span class="skill-tag">feature engineering</span>
+            <span class="skill-tag">model selection</span>
+            <span class="skill-tag">deployment</span>
+            <span class="skill-tag">monitoring</span>
+          </div>
+          <div class="goal">Goal: Build a complete ML system—from data ingestion to deployment—that could be used in industry</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Deep Learning Section -->
+    <div id="dl" class="content">
+      <div class="levels">
+        <button class="level active" data-level="beginner">Beginner</button>
+        <button class="level" data-level="intermediate">Intermediate</button>
+        <button class="level" data-level="milestone">Milestone</button>
+      </div>
+      <div class="project-grid">
+        <!-- DL Beginner Projects -->
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">1. Neural Network from Scratch</div>
+          <div class="project-description">Implement a simple neural network without using frameworks</div>
+          <div class="skills">
+            <span class="skill-tag">backpropagation</span>
+            <span class="skill-tag">gradient descent</span>
+            <span class="skill-tag">activation functions</span>
+          </div>
+          <div class="goal">Goal: Understand the mathematical foundations of neural networks</div>
+        </div>
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">2. Image Classification with CNN</div>
+          <div class="project-description">Classify images from CIFAR-10 or Fashion MNIST</div>
+          <div class="skills">
+            <span class="skill-tag">convolutional layers</span>
+            <span class="skill-tag">pooling</span>
+            <span class="skill-tag">data augmentation</span>
+          </div>
+          <div class="goal">Goal: Learn CNN architectures and training techniques</div>
+        </div>
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">3. Sentiment Analysis with Simple RNN</div>
+          <div class="project-description">Analyze movie or product reviews</div>
+          <div class="skills">
+            <span class="skill-tag">text preprocessing</span>
+            <span class="skill-tag">word embeddings</span>
+            <span class="skill-tag">recurrent networks</span>
+          </div>
+          <div class="goal">Goal: Understand sequence modeling for text data</div>
+        </div>
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">4. Music Genre Classification</div>
+          <div class="project-description">Classify audio files by genre</div>
+          <div class="skills">
+            <span class="skill-tag">audio feature extraction</span>
+            <span class="skill-tag">spectrogram analysis</span>
+            <span class="skill-tag">CNN application</span>
+          </div>
+          <div class="goal">Goal: Apply deep learning to audio data</div>
+        </div>
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">5. Neural Style Transfer</div>
+          <div class="project-description">Create artistic images by combining content and style images</div>
+          <div class="skills">
+            <span class="skill-tag">pretrained networks</span>
+            <span class="skill-tag">feature extraction</span>
+            <span class="skill-tag">optimization</span>
+          </div>
+          <div class="goal">Goal: Understand how CNNs capture and represent image style and content</div>
+        </div>
+        <!-- DL Intermediate Projects -->
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">6. Object Detection System</div>
+          <div class="project-description">Detect and locate objects in images</div>
+          <div class="skills">
+            <span class="skill-tag">YOLO</span>
+            <span class="skill-tag">SSD</span>
+            <span class="skill-tag">Faster R-CNN</span>
+          </div>
+          <div class="goal">Goal: Extend beyond simple classification to tackle complex vision tasks</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">7. Image Segmentation</div>
+          <div class="project-description">Segment medical images or satellite imagery</div>
+          <div class="skills">
+            <span class="skill-tag">U-Net</span>
+            <span class="skill-tag">Mask R-CNN</span>
+            <span class="skill-tag">IoU evaluation</span>
+          </div>
+          <div class="goal">Goal: Learn pixel-level classification techniques</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">8. Time Series Forecasting with LSTM</div>
+          <div class="project-description">Energy consumption prediction or weather forecasting</div>
+          <div class="skills">
+            <span class="skill-tag">LSTM architecture</span>
+            <span class="skill-tag">sequence-to-sequence modeling</span>
+          </div>
+          <div class="goal">Goal: Apply recurrent networks to model temporal data</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">9. Autoencoders for Anomaly Detection</div>
+          <div class="project-description">Detect anomalies in industrial sensor data</div>
+          <div class="skills">
+            <span class="skill-tag">encoder-decoder</span>
+            <span class="skill-tag">reconstruction error</span>
+          </div>
+          <div class="goal">Goal: Explore unsupervised representation learning</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">10. Generative Adversarial Network (GAN)</div>
+          <div class="project-description">Generate realistic faces or artwork</div>
+          <div class="skills">
+            <span class="skill-tag">generator/discriminator</span>
+            <span class="skill-tag">training stability</span>
+          </div>
+          <div class="goal">Goal: Understand adversarial training and generative modeling</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">11. Image Classification using Transfer Learning <span class="new-tag">NEW</span></div>
+          <div class="project-description">Fine-tune a pretrained CNN (e.g., ResNet) on a custom small dataset</div>
+          <div class="skills">
+            <span class="skill-tag">transfer learning</span>
+            <span class="skill-tag">fine-tuning</span>
+            <span class="skill-tag">data augmentation</span>
+          </div>
+          <div class="goal">Goal: Leverage pretrained models to achieve high performance on limited data</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">12. Self-Supervised Contrastive Learning <span class="new-tag">NEW</span></div>
+          <div class="project-description">Use contrastive learning on unlabeled images to learn useful representations</div>
+          <div class="skills">
+            <span class="skill-tag">contrastive loss</span>
+            <span class="skill-tag">data augmentation</span>
+            <span class="skill-tag">unsupervised feature learning</span>
+          </div>
+          <div class="goal">Goal: Harness unlabeled data to boost model performance</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">13. Few-Shot Learning with MAML <span class="new-tag">NEW</span></div>
+          <div class="project-description">Implement Model-Agnostic Meta-Learning on a few-shot classification task</div>
+          <div class="skills">
+            <span class="skill-tag">meta-learning</span>
+            <span class="skill-tag">gradient-based adaptation</span>
+            <span class="skill-tag">few-shot problem solving</span>
+          </div>
+          <div class="goal">Goal: Develop models that quickly adapt to new tasks with minimal data</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">14. Graph Neural Network for Social Network Analysis <span class="new-tag">NEW</span></div>
+          <div class="project-description">Apply a GNN to predict node categories or relationships within a social network</div>
+          <div class="skills">
+            <span class="skill-tag">graph convolutions</span>
+            <span class="skill-tag">node embeddings</span>
+            <span class="skill-tag">network analysis</span>
+          </div>
+          <div class="goal">Goal: Understand how to model and analyze graph-structured data</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">15. Advanced Optimization in Deep Learning <span class="new-tag">NEW</span></div>
+          <div class="project-description">Compare different optimizers on a standard dataset</div>
+          <div class="skills">
+            <span class="skill-tag">optimizer tuning</span>
+            <span class="skill-tag">learning rate scheduling</span>
+            <span class="skill-tag">convergence analysis</span>
+          </div>
+          <div class="goal">Goal: Gain insight into how advanced optimization techniques affect training dynamics</div>
+        </div>
+        <!-- DL Milestone Projects -->
+        <div class="project-card milestone" data-level="milestone">
+          <div class="project-title">16. Medical Image Analysis System</div>
+          <div class="project-description">Develop a system to detect diseases from X-rays or MRIs</div>
+          <div class="skills">
+            <span class="skill-tag">transfer learning</span>
+            <span class="skill-tag">model explainability</span>
+            <span class="skill-tag">domain-specific knowledge</span>
+          </div>
+          <div class="goal">Goal: Create a potentially life-saving deep learning application</div>
+        </div>
+        <div class="project-card milestone" data-level="milestone">
+          <div class="project-title">17. Deep Reinforcement Learning for Game Playing</div>
+          <div class="project-description">Train an agent to play Atari games or custom environments using deep RL techniques</div>
+          <div class="skills">
+            <span class="skill-tag">DQN</span>
+            <span class="skill-tag">policy gradients</span>
+            <span class="skill-tag">reward engineering</span>
+          </div>
+          <div class="goal">Goal: Combine deep learning with reinforcement learning for complex decision-making tasks</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Natural Language Processing Section -->
+    <div id="nlp" class="content">
+      <div class="levels">
+        <button class="level active" data-level="beginner">Beginner</button>
+        <button class="level" data-level="intermediate">Intermediate</button>
+        <button class="level" data-level="milestone">Milestone</button>
+      </div>
+      <div class="project-grid">
+        <!-- NLP Beginner Projects -->
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">1. Text Classification with Traditional ML</div>
+          <div class="project-description">Spam detection or news categorization</div>
+          <div class="skills">
+            <span class="skill-tag">bag-of-words</span>
+            <span class="skill-tag">TF-IDF</span>
+            <span class="skill-tag">Naive Bayes</span>
+          </div>
+          <div class="goal">Goal: Learn basic text representation and classification methods</div>
+        </div>
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">2. Named Entity Recognition</div>
+          <div class="project-description">Extract entities from news articles or legal documents</div>
+          <div class="skills">
+            <span class="skill-tag">spaCy</span>
+            <span class="skill-tag">conditional random fields</span>
+          </div>
+          <div class="goal">Goal: Understand sequence labeling tasks</div>
+        </div>
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">3. Topic Modeling</div>
+          <div class="project-description">Discover topics in document collections</div>
+          <div class="skills">
+            <span class="skill-tag">LDA</span>
+            <span class="skill-tag">NMF</span>
+            <span class="skill-tag">coherence evaluation</span>
+          </div>
+          <div class="goal">Goal: Learn unsupervised techniques for text analysis</div>
+        </div>
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">4. Text Summarization</div>
+          <div class="project-description">Create extractive summaries of news articles</div>
+          <div class="skills">
+            <span class="skill-tag">TextRank</span>
+            <span class="skill-tag">evaluation metrics</span>
+          </div>
+          <div class="goal">Goal: Understand document structure and importance scoring</div>
+        </div>
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">5. Sentiment Analysis with Word Embeddings</div>
+          <div class="project-description">Analyze social media sentiment</div>
+          <div class="skills">
+            <span class="skill-tag">Word2Vec</span>
+            <span class="skill-tag">GloVe</span>
+            <span class="skill-tag">embedding visualization</span>
+          </div>
+          <div class="goal">Goal: Learn distributed representations of words</div>
+        </div>
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">6. Syntactic Parsing for Grammar Checking <span class="new-tag">NEW</span></div>
+          <div class="project-description">Develop a parser that generates syntax trees for sentences</div>
+          <div class="skills">
+            <span class="skill-tag">dependency parsing</span>
+            <span class="skill-tag">constituency parsing</span>
+            <span class="skill-tag">NLP toolkits</span>
+          </div>
+          <div class="goal">Goal: Gain insight into the structural analysis of language</div>
+        </div>
+        <!-- NLP Intermediate Projects -->
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">7. Language Modeling</div>
+          <div class="project-description">Build a character-level or word-level language model</div>
+          <div class="skills">
+            <span class="skill-tag">N-grams</span>
+            <span class="skill-tag">RNNs</span>
+            <span class="skill-tag">perplexity evaluation</span>
+          </div>
+          <div class="goal">Goal: Learn to model probability distributions over text sequences</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">8. Neural Machine Translation</div>
+          <div class="project-description">Build a translator between two languages</div>
+          <div class="skills">
+            <span class="skill-tag">encoder-decoder</span>
+            <span class="skill-tag">attention</span>
+            <span class="skill-tag">BLEU score</span>
+          </div>
+          <div class="goal">Goal: Understand sequence-to-sequence models for language translation</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">9. Question Answering System</div>
+          <div class="project-description">Create a system that answers questions based on a given passage</div>
+          <div class="skills">
+            <span class="skill-tag">reading comprehension</span>
+            <span class="skill-tag">span extraction</span>
+          </div>
+          <div class="goal">Goal: Develop advanced NLP architectures for understanding context</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">10. Text Generation with RNNs/LSTMs</div>
+          <div class="project-description">Generate creative text such as poetry or stories</div>
+          <div class="skills">
+            <span class="skill-tag">temperature sampling</span>
+            <span class="skill-tag">beam search</span>
+          </div>
+          <div class="goal">Goal: Explore generative models for language</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">11. Chatbot with Intent Recognition</div>
+          <div class="project-description">Build a domain-specific conversational agent</div>
+          <div class="skills">
+            <span class="skill-tag">intent classification</span>
+            <span class="skill-tag">entity extraction</span>
+            <span class="skill-tag">dialogue management</span>
+          </div>
+          <div class="goal">Goal: Understand the components required for building a chatbot</div>
+        </div>
+        <!-- NLP Milestone Project -->
+        <div class="project-card milestone" data-level="milestone">
+          <div class="project-title">12. Document Understanding System</div>
+          <div class="project-description">Create a system that extracts information from documents and answers questions</div>
+          <div class="skills">
+            <span class="skill-tag">multi-task learning</span>
+            <span class="skill-tag">document parsing</span>
+            <span class="skill-tag">summarization</span>
+          </div>
+          <div class="goal">Goal: Build an end-to-end system combining various NLP capabilities</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Large Language Models Section -->
+    <div id="llm" class="content">
+      <div class="levels">
+        <button class="level active" data-level="beginner">Beginner</button>
+        <button class="level" data-level="intermediate">Intermediate</button>
+        <button class="level" data-level="milestone">Milestone</button>
+      </div>
+      <div class="project-grid">
+        <!-- LLM Beginner Projects -->
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">1. Fine-tuning a Small LLM for Classification</div>
+          <div class="project-description">Fine-tune a model like DistilBERT for sentiment analysis</div>
+          <div class="skills">
+            <span class="skill-tag">Hugging Face transformers</span>
+            <span class="skill-tag">transfer learning</span>
+          </div>
+          <div class="goal">Goal: Understand the fine-tuning process on a lightweight LLM</div>
+        </div>
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">2. Few-shot Learning with Prompts</div>
+          <div class="project-description">Solve tasks using effective prompt engineering without fine-tuning</div>
+          <div class="skills">
+            <span class="skill-tag">prompt design</span>
+            <span class="skill-tag">in-context learning</span>
+          </div>
+          <div class="goal">Goal: Learn how to elicit useful responses from LLMs with minimal data</div>
+        </div>
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">3. Knowledge Extraction from LLMs</div>
+          <div class="project-description">Extract structured information from unstructured text</div>
+          <div class="skills">
+            <span class="skill-tag">prompt chaining</span>
+            <span class="skill-tag">output parsing</span>
+          </div>
+          <div class="goal">Goal: Utilize LLMs as tools for information extraction</div>
+        </div>
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">4. Text Embeddings for Semantic Search</div>
+          <div class="project-description">Build a search engine for a document collection using sentence embeddings</div>
+          <div class="skills">
+            <span class="skill-tag">sentence transformers</span>
+            <span class="skill-tag">vector similarity</span>
+          </div>
+          <div class="goal">Goal: Represent documents in a vector space for effective retrieval</div>
+        </div>
+        <div class="project-card" data-level="beginner">
+          <div class="project-title">5. LLM-powered Content Moderation</div>
+          <div class="project-description">Build a system to detect toxic or inappropriate content</div>
+          <div class="skills">
+            <span class="skill-tag">classification fine-tuning</span>
+            <span class="skill-tag">evaluation metrics</span>
+          </div>
+          <div class="goal">Goal: Apply LLMs to content filtering challenges</div>
+        </div>
+        <!-- LLM Intermediate Projects -->
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">6. Retrieval-Augmented Generation (RAG)</div>
+          <div class="project-description">Create a question-answering system that retrieves external knowledge to inform its answers</div>
+          <div class="skills">
+            <span class="skill-tag">vector databases</span>
+            <span class="skill-tag">context retrieval</span>
+            <span class="skill-tag">LLM integration</span>
+          </div>
+          <div class="goal">Goal: Combine retrieval with generation for more accurate responses</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">7. Instruction Fine-tuning</div>
+          <div class="project-description">Fine-tune a small LLM to follow specific instructions</div>
+          <div class="skills">
+            <span class="skill-tag">instruction datasets</span>
+            <span class="skill-tag">RLHF concepts</span>
+          </div>
+          <div class="goal">Goal: Understand model alignment techniques</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">8. Multimodal Applications</div>
+          <div class="project-description">Combine image understanding with text generation</div>
+          <div class="skills">
+            <span class="skill-tag">vision encoders</span>
+            <span class="skill-tag">cross-modal attention</span>
+          </div>
+          <div class="goal">Goal: Build systems that integrate multiple data modalities</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">9. Chain-of-Thought Reasoning</div>
+          <div class="project-description">Develop techniques to encourage step-by-step reasoning in LLM outputs</div>
+          <div class="skills">
+            <span class="skill-tag">prompt engineering</span>
+            <span class="skill-tag">reasoning evaluation</span>
+          </div>
+          <div class="goal">Goal: Improve interpretability and performance on complex tasks</div>
+        </div>
+        <div class="project-card" data-level="intermediate">
+          <div class="project-title">10. LLM API Orchestration</div>
+          <div class="project-description">Build an application that coordinates multiple LLM calls for a composite task</div>
+          <div class="skills">
+            <span class="skill-tag">API integration</span>
+            <span class="skill-tag">prompt design</span>
+            <span class="skill-tag">output aggregation</span>
+          </div>
+          <div class="goal">Goal: Learn to use LLMs as modular components in larger systems</div>
+        </div>
+        <!-- LLM Milestone Projects -->
+        <div class="project-card milestone" data-level="milestone">
+          <div class="project-title">11. Domain-Specific Assistant</div>
+          <div class="project-description">Create a specialized assistant for a specific domain (e.g., legal, medical)</div>
+          <div class="skills">
+            <span class="skill-tag">retrieval augmentation</span>
+            <span class="skill-tag">fine-tuning</span>
+            <span class="skill-tag">domain knowledge integration</span>
+          </div>
+          <div class="goal">Goal: Build a complete LLM application addressing a targeted use case</div>
+        </div>
+        <div class="project-card milestone" data-level="milestone">
+          <div class="project-title">12. LLM-powered Agent</div>
+          <div class="project-description">Develop an autonomous agent capable of tool usage and problem solving</div>
+          <div class="skills">
+            <span class="skill-tag">planning</span>
+            <span class="skill-tag">self-reflection</span>
+            <span class="skill-tag">multi-step reasoning</span>
+          </div>
+          <div class="goal">Goal: Create a system that can interact with its environment and solve tasks autonomously</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Function to apply the current level filter for a given content container
+      function applyLevelFilter(container) {
+        const activeLevelButton = container.querySelector(".levels .level.active");
+        if (!activeLevelButton) return;
+        const selectedLevel = activeLevelButton.getAttribute("data-level");
+        const projectGrid = container.querySelector(".project-grid");
+        const projectCards = projectGrid.querySelectorAll(".project-card");
+        projectCards.forEach(card => {
+          if (card.getAttribute("data-level") === selectedLevel) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+
+      // Tab switching functionality
+      const tabs = document.querySelectorAll(".tab");
+      const contents = document.querySelectorAll(".content");
+
+      tabs.forEach(tab => {
+        tab.addEventListener("click", function() {
+          // Remove active class from all tabs and contents
+          tabs.forEach(t => t.classList.remove("active"));
+          contents.forEach(c => c.classList.remove("active"));
+          
+          // Activate clicked tab and corresponding content
+          tab.classList.add("active");
+          const category = tab.getAttribute("data-category");
+          const activeContent = document.getElementById(category);
+          activeContent.classList.add("active");
+
+          // Automatically apply the active level filter for this tab
+          applyLevelFilter(activeContent);
+        });
+      });
+
+      // Level filtering functionality
+      const levelButtons = document.querySelectorAll(".levels .level");
+      levelButtons.forEach(btn => {
+        btn.addEventListener("click", function() {
+          const parentLevels = btn.parentElement;
+          const buttons = parentLevels.querySelectorAll(".level");
+          buttons.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          
+          const projectGrid = parentLevels.nextElementSibling;
+          const projectCards = projectGrid.querySelectorAll(".project-card");
+          const selectedLevel = btn.getAttribute("data-level");
+          projectCards.forEach(card => {
+            if (card.getAttribute("data-level") === selectedLevel) {
+              card.style.display = "block";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+      });
+
+      // Search functionality
+      const searchInput = document.getElementById("searchInput");
+      searchInput.addEventListener("input", function() {
+        const query = searchInput.value.toLowerCase();
+        const activeContent = document.querySelector(".content.active");
+        const projectCards = activeContent.querySelectorAll(".project-card");
+        projectCards.forEach(card => {
+          const text = card.textContent.toLowerCase();
+          if (text.indexOf(query) > -1) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      });
+
+      // Apply initial filter on page load for the default active tab
+      const initialActiveContent = document.querySelector(".content.active");
+      applyLevelFilter(initialActiveContent);
+    });
+  </script>
+</body>
+</html>
