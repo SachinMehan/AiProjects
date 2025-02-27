@@ -10,9 +10,6 @@
 - [Deep Learning](#deep-learning)
 - [Natural Language Processing](#natural-language-processing)
 - [Large Language Models](#large-language-models)
-- [Implementation Approach](#implementation-approach)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## 🚀 Introduction
 
